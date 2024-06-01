@@ -3,7 +3,7 @@
   IPingTray
 </h1>
 
-This program permit to have your current ping in `ms` inside your menu bar on your computer ! 
+This program permit to have your current ping in `ms` inside your menu bar on your computer !
 ( cf [Screenshots](#screenshots))
 
 This tool is useful when traveling with an unstable connection to know if you can try to work or not 🙂.
@@ -17,7 +17,7 @@ You can download the last release of the project in the
 
 Running the app will automatically add you a tray in your menu bar.
 
-The reference to determine your ping is the Google DNS server (`8.8.8.8`), 
+The reference to determine your ping is the Google DNS server (`8.8.8.8`),
 this option cannot be configured at this time)
 
 ### Thresholds

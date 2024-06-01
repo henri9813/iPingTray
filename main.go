@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/getlantern/systray"
+	"fyne.io/systray"
 	probing "github.com/prometheus-community/pro-bing"
 )
 
@@ -35,19 +35,20 @@ func onReady() {
 	pinger.OnRecv = func(pkt *probing.Packet) {
 		latency := pkt.Rtt.Milliseconds()
 
-		if latency < 50 {
+		switch {
+		case latency < 50:
 			systray.SetTitle(fmt.Sprintf("🟢 %d ms", latency))
-		} else if latency < 75 {
+		case latency < 75:
 			systray.SetTitle(fmt.Sprintf("🟠 %d ms", latency))
-		} else {
+		default:
 			systray.SetTitle(fmt.Sprintf("🔴 %d ms", latency))
 		}
 
 		mLatencyLabel.SetTitle(fmt.Sprintf("%s: %d ms", pinger.IPAddr().String(), latency))
 	}
 
-	pinger.OnSendError = func(packet *probing.Packet, err error) {
-		systray.SetTitle(fmt.Sprintf("🔴 Network unavailable"))
+	pinger.OnSendError = func(_ *probing.Packet, err error) {
+		systray.SetTitle("🔴 Network unavailable")
 
 		if strings.Contains(err.Error(), "sendto") {
 			parts := strings.Split(err.Error(), ": ")
