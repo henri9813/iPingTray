@@ -20,14 +20,6 @@ Running the app will automatically add you a tray in your menu bar.
 The reference to determine your ping is the Google DNS server (`8.8.8.8`),
 this option cannot be configured at this time)
 
-## Start app automatically on boot
-
-###  macOS
-
-You can follow the article from Apple which explain how to start the app automatically at boot:
-
-<https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-in-mh15189>
-
 ### Thresholds
 
 | Indicator |  Latency Range  |
@@ -36,10 +28,23 @@ You can follow the article from Apple which explain how to start the app automat
 |     🟠     | Latency < 75ms  |
 |     🔴     | Latency >= 75ms |
 
+## Start app automatically on boot
+
+###  macOS
+
+You can follow the article from Apple which explain how to start the app automatically at boot:
+
+<https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-in-mh15189>
+
+### Windows
+
+The installer automatically add the program to startup programs.
 
 ## Screenshots
 
-![./docs/screenshot.png](/docs/screenshot.png)
+![macOS screenshot](/docs/screenshot-macos.png)
+
+![windows screenshot](/docs/screenshot-windows.png)
 
 ## Development
 
