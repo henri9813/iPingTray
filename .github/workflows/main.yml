@@ -8,14 +8,26 @@ permissions:
   contents: read
 
 jobs:
+  generate-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/generate-icons
+
   windows-build:
     runs-on: windows-latest
+    needs: [ generate-icons ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
-      - run: go build -o ipingtray.exe
+      - uses: actions/download-artifact@v4
+        with:
+          name: icons
+          path: icons
+
+      - run: go build -ldflags -H=windowsgui -o ipingtray.exe
 
       - name: Set up NSIS
         run: choco install nsis
@@ -33,11 +45,16 @@ jobs:
 
   macos-build:
     runs-on: macos-13
+    needs: [ generate-icons ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version: '1.22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: icons
+          path: icons
 
       - run: go build -o ipingtray
       - run: go install github.com/machinebox/appify@latest

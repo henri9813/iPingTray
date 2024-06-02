@@ -22,11 +22,11 @@ this option cannot be configured at this time)
 
 ## Start app automatically on boot
 
-###  MacOS
+###  macOS
 
 You can follow the article from Apple which explain how to start the app automatically at boot:
 
-https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-in-mh15189
+<https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-in-mh15189>
 
 ### Thresholds
 
@@ -40,6 +40,24 @@ https://support.apple.com/guide/mac-help/open-items-automatically-when-you-log-i
 ## Screenshots
 
 ![./docs/screenshot.png](/docs/screenshot.png)
+
+## Development
+
+### Generate icons
+
+If you wish to update the icons, you need to run the `generate-icons.sh` which gonna generate
+golang []bytes array representing the icon.
+
+To generate icons, you also need to install [`2goarray`](https://github.com/cratonica/2goarray)
+
+```bash
+go get github.com/cratonica/2goarray
+go install github.com/cratonica/2goarray
+```
+
+> ⚠️ We use .ico file because it's the only supported format on windows, according to
+> [@ZGGSONG](https://github.com/getlantern/systray/issues/154#issuecomment-1207607136)
+
 
 ## Contribution
 
