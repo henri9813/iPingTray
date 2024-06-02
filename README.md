@@ -67,3 +67,7 @@ go install github.com/cratonica/2goarray
 ## Contribution
 
 Feel free to contribute !
+
+## Licence
+
+Creative Commons Attribution-NonCommercial 4.0 International License
