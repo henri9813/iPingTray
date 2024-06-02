@@ -8,6 +8,29 @@ permissions:
   contents: read
 
 jobs:
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: go build -o ipingtray.exe
+
+      - name: Set up NSIS
+        run: choco install nsis
+
+      - name: Create installer
+        run: |
+          cp build/windows/installer.nsi .
+          & "C:\Program Files (x86)\NSIS\makensis.exe" "installer.nsi"
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: iPingTray-setup.exe
+          path: iPingTray-setup.exe
+
   macos-build:
     runs-on: macos-13
     steps:
@@ -47,6 +70,7 @@ jobs:
       pull-requests: write
     needs:
       - macos-build
+      - windows-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
